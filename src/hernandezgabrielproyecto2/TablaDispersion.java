@@ -24,4 +24,18 @@ public class TablaDispersion {
         }
         return Math.abs(hash);
     }
+    
+    public void insertar(String claveUsuario, RegistroImpresion registro) {
+        int indice = hash(claveUsuario);
+        EntradaHash nueva = new EntradaHash(claveUsuario, registro);
+        if (tabla[indice] == null) {
+            tabla[indice] = nueva;
+        } else {
+            EntradaHash actual = tabla[indice];
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
+            }
+            actual.siguiente = nueva;
+        }
+    }
 }
