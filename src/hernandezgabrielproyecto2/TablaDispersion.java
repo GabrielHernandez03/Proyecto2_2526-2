@@ -38,4 +38,16 @@ public class TablaDispersion {
             actual.siguiente = nueva;
         }
     }
+    
+    public RegistroImpresion obtener(String claveUsuario) {
+        int indice = hash(claveUsuario);
+        EntradaHash actual = tabla[indice];
+        while (actual != null) {
+            if (actual.clave.equals(claveUsuario)) {
+                return actual.valor;
+            }
+            actual = actual.siguiente;
+        }
+        return null;
+    }
 }
