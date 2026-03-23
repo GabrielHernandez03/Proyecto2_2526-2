@@ -19,4 +19,26 @@ public class MonticuloBinario {
         this.tamanoActual = 0;
         this.monticulo = new RegistroImpresion[this.capacidadMaxima + 1];
     }
+    
+    public void insertar(RegistroImpresion registro) {
+        if (tamanoActual >= capacidadMaxima) {
+            return;
+        }
+        tamanoActual++;
+        monticulo[tamanoActual] = registro;
+        flotar(tamanoActual);
+    }
+    
+    private void flotar(int posicion) {
+        while (posicion > 1 && monticulo[posicion / 2].etiquetaTiempo > monticulo[posicion].etiquetaTiempo) {
+            intercambiar(posicion, posicion / 2);
+            posicion = posicion / 2;
+        }
+    }
+    
+    private void intercambiar(int i, int j) {
+        RegistroImpresion temp = monticulo[i];
+        monticulo[i] = monticulo[j];
+        monticulo[j] = temp;
+    }
 }
