@@ -14,4 +14,17 @@ public class ListaUsuarios {
     public ListaUsuarios(){
         cabeza = null;
     }
+    
+    public void agregar(Usuario user) {
+        NodoUsuario nuevo = new NodoUsuario(user);
+        if (cabeza == null) {
+            cabeza = nuevo;
+        } else {
+            NodoUsuario actual = cabeza;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
+            }
+            actual.siguiente = nuevo;
+        }
+    }
 }
