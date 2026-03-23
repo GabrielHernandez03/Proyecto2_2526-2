@@ -42,4 +42,15 @@ public class ListaUsuarios {
             actual.siguiente = actual.siguiente.siguiente;
         }
     }
+    
+    public Usuario buscar(String nombre) {
+        NodoUsuario actual = cabeza;
+        while (actual != null) {
+            if (actual.valor.nombre.equals(nombre)) {
+                return actual.valor;
+            }
+            actual = actual.siguiente;
+        }
+        return null;
+    }
 }
