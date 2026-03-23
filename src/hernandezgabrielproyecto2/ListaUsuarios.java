@@ -27,4 +27,19 @@ public class ListaUsuarios {
             actual.siguiente = nuevo;
         }
     }
+    
+    public void eliminar(String nombre) {
+        if (cabeza == null) return;
+        if (cabeza.valor.nombre.equals(nombre)) {
+            cabeza = cabeza.siguiente;
+            return;
+        }
+        NodoUsuario actual = cabeza;
+        while (actual.siguiente != null && !actual.siguiente.valor.nombre.equals(nombre)) {
+            actual = actual.siguiente;
+        }
+        if (actual.siguiente != null) {
+            actual.siguiente = actual.siguiente.siguiente;
+        }
+    }
 }
