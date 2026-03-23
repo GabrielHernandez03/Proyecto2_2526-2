@@ -66,4 +66,14 @@ public class MonticuloBinario {
             posicion = hijo;
         }
     }
+    
+    public void alterarPrioridadAlMaximo(RegistroImpresion registro) {
+        for (int i = 1; i <= tamanoActual; i++) {
+            if (monticulo[i] == registro) {
+                monticulo[i].etiquetaTiempo = -1;
+                flotar(i);
+                break;
+            }
+        }
+    }
 }
