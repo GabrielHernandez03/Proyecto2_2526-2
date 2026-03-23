@@ -41,4 +41,29 @@ public class MonticuloBinario {
         monticulo[i] = monticulo[j];
         monticulo[j] = temp;
     }
+    
+    public RegistroImpresion eliminar_min() {
+        if (tamanoActual == 0) {
+            return null;
+        }
+        RegistroImpresion min = monticulo[1];
+        monticulo[1] = monticulo[tamanoActual];
+        tamanoActual--;
+        hundir(1);
+        return min;
+    }
+    
+    private void hundir(int posicion) {
+        while (2 * posicion <= tamanoActual) {
+            int hijo = 2 * posicion;
+            if (hijo < tamanoActual && monticulo[hijo].etiquetaTiempo > monticulo[hijo + 1].etiquetaTiempo) {
+                hijo++;
+            }
+            if (monticulo[posicion].etiquetaTiempo <= monticulo[hijo].etiquetaTiempo) {
+                break;
+            }
+            intercambiar(posicion, hijo);
+            posicion = hijo;
+        }
+    }
 }
