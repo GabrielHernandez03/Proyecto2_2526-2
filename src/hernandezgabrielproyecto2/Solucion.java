@@ -119,14 +119,20 @@ public class Solucion {
     }
     
     public void liberarImpresora() {
-        colaImpresion.eliminar_min();
+        RegistroImpresion impreso = colaImpresion.eliminar_min();
+        if (impreso != null) {
+            tablaUsuariosRegistros.eliminarPorRegistro(impreso);
+        }
     }
     
     public void eliminarDocumentoDeCola(String nombreUsuario) {
         RegistroImpresion registro = tablaUsuariosRegistros.obtener(nombreUsuario);
         if (registro != null) {
             colaImpresion.alterarPrioridadAlMaximo(registro);
-            colaImpresion.eliminar_min();
+            RegistroImpresion eliminado = colaImpresion.eliminar_min();
+            if (eliminado != null) {
+                tablaUsuariosRegistros.eliminarPorRegistro(eliminado);
+            }
         }
     }
     
@@ -150,6 +156,22 @@ public class Solucion {
         int tamano = colaImpresion.obtenerTamano();
         for (int i = 1; i <= tamano; i++) {
             System.out.println("Doc: " + arreglo[i].documento.nombre + " | Etiqueta: " + arreglo[i].etiquetaTiempo);
+        }
+    }
+
+    public void mostrarColaArbol() {
+        RegistroImpresion[] arreglo = colaImpresion.obtenerArregloInterno();
+        int tamano = colaImpresion.obtenerTamano();
+        if (tamano > 0) {
+            mostrarNodoArbol(arreglo, 1, "", true, tamano);
+        }
+    }
+
+    private void mostrarNodoArbol(RegistroImpresion[] arreglo, int indice, String prefijo, boolean esIzquierdo, int tamano) {
+        if (indice <= tamano) {
+            System.out.println(prefijo + (esIzquierdo ? "├── " : "└── ") + arreglo[indice].documento.nombre + " (" + arreglo[indice].etiquetaTiempo + ")");
+            mostrarNodoArbol(arreglo, 2 * indice, prefijo + (esIzquierdo ? "│   " : "    "), true, tamano);
+            mostrarNodoArbol(arreglo, 2 * indice + 1, prefijo + (esIzquierdo ? "│   " : "    "), false, tamano);
         }
     }
 }
