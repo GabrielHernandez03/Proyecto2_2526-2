@@ -144,4 +144,12 @@ public class Solucion {
             actual = actual.siguiente;
         }
     }
+    
+    public void mostrarColaSecuencia() {
+        RegistroImpresion[] arreglo = colaImpresion.obtenerArregloInterno();
+        int tamano = colaImpresion.obtenerTamano();
+        for (int i = 1; i <= tamano; i++) {
+            System.out.println("Doc: " + arreglo[i].documento.nombre + " | Etiqueta: " + arreglo[i].etiquetaTiempo);
+        }
+    }
 }
