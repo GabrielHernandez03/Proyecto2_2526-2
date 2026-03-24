@@ -57,4 +57,11 @@ public class Solucion {
     public void eliminarUsuario(String nombre) {
         usuariosRegistrados.eliminar(nombre);
     }
+    
+    public void crearDocumentoParaUsuario(String nombreUsuario, String nombreDoc, int tamano, String tipoDoc) {
+        Usuario user = usuariosRegistrados.buscar(nombreUsuario);
+        if (user != null) {
+            user.documentos.agregar(new Documento(nombreDoc, tamano, tipoDoc));
+        }
+    }
 }
