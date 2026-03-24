@@ -85,4 +85,36 @@ public class Solucion {
             }
         }
     }
+    
+    public void enviarAImprimir(String nombreUsuario, String nombreDoc, boolean esPrioritario) {
+        Usuario user = usuariosRegistrados.buscar(nombreUsuario);
+        if (user == null) return;
+
+        Documento docAImprimir = null;
+        NodoLista actual = user.documentos.cabeza;
+        while (actual != null) {
+            Documento doc = (Documento) actual.valor;
+            if (doc.nombre.equals(nombreDoc) && !doc.enCola) {
+                docAImprimir = doc;
+                break;
+            }
+            actual = actual.siguiente;
+        }
+
+        if (docAImprimir == null) return;
+
+        int etiqueta = relojSimulacion;
+        if (esPrioritario) {
+            if (user.tipo.equals("prioridad_alta")) {
+                etiqueta = Math.max(0, etiqueta - 10);
+            } else if (user.tipo.equals("prioridad_media")) {
+                etiqueta = Math.max(0, etiqueta - 5);
+            }
+        }
+        
+        RegistroImpresion registro = new RegistroImpresion(docAImprimir, etiqueta);
+        docAImprimir.enCola = true;
+        colaImpresion.insertar(registro);
+        tablaUsuariosRegistros.insertar(user.nombre, registro);
+    }
 }
