@@ -53,4 +53,8 @@ public class Solucion {
             System.out.println("Error");
         }
     }
+    
+    public void eliminarUsuario(String nombre) {
+        usuariosRegistrados.eliminar(nombre);
+    }
 }
