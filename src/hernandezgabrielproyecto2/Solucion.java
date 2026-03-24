@@ -20,4 +20,8 @@ public class Solucion {
         this.usuariosRegistrados = new ListaUsuarios();
         this.relojSimulacion = 0;
     }
+    
+    public void avanzarReloj() {
+        this.relojSimulacion++;
+    }
 }
