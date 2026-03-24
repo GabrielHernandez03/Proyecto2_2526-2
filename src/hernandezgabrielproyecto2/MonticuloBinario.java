@@ -76,4 +76,12 @@ public class MonticuloBinario {
             }
         }
     }
+    
+    public RegistroImpresion[] obtenerArregloInterno() {
+        return monticulo;
+    }
+
+    public int obtenerTamano() {
+        return tamanoActual;
+    }
 }
