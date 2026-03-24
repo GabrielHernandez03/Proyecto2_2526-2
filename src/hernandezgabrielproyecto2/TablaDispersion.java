@@ -50,4 +50,23 @@ public class TablaDispersion {
         }
         return null;
     }
+
+    public void eliminarPorRegistro(RegistroImpresion registro) {
+        for (int i = 0; i < capacidad; i++) {
+            EntradaHash actual = tabla[i];
+            EntradaHash previo = null;
+            while (actual != null) {
+                if (actual.valor == registro) {
+                    if (previo == null) {
+                        tabla[i] = actual.siguiente;
+                    } else {
+                        previo.siguiente = actual.siguiente;
+                    }
+                    return;
+                }
+                previo = actual;
+                actual = actual.siguiente;
+            }
+        }
+    }
 }
