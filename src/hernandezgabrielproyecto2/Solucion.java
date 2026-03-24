@@ -129,4 +129,19 @@ public class Solucion {
             colaImpresion.eliminar_min();
         }
     }
+    
+    public void mostrarUsuariosYDocumentos() {
+        NodoUsuario actual = usuariosRegistrados.cabeza;
+        while (actual != null) {
+            System.out.println("Usuario: " + actual.valor.nombre + " [" + actual.valor.tipo + "]");
+            NodoLista nodoDoc = actual.valor.documentos.cabeza;
+            while (nodoDoc != null) {
+                Documento doc = (Documento) nodoDoc.valor;
+                String estado = doc.enCola ? "En Cola" : "No Encolado";
+                System.out.println("  - Doc: " + doc.nombre + " (" + estado + ")");
+                nodoDoc = nodoDoc.siguiente;
+            }
+            actual = actual.siguiente;
+        }
+    }
 }
