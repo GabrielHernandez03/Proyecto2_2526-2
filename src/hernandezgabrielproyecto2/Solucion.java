@@ -4,6 +4,10 @@
  */
 package hernandezgabrielproyecto2;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  *
  * @author Gabriel
@@ -28,6 +32,25 @@ public class Solucion {
     public void agregarUsuario(String nombre, String tipo) {
         if (usuariosRegistrados.buscar(nombre) == null) {
             usuariosRegistrados.agregar(new Usuario(nombre, tipo));
+        }
+    }
+    
+    public void cargarUsuariosCSV(String rutaArchivo) {
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+            String linea;
+            boolean primeraLinea = true;
+            while ((linea = br.readLine()) != null) {
+                if (primeraLinea) {
+                    primeraLinea = false;
+                    continue;
+                }
+                String[] datos = linea.split(",");
+                if (datos.length == 2) {
+                    agregarUsuario(datos[0].trim(), datos[1].trim());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error");
         }
     }
 }
