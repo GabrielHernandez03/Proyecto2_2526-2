@@ -121,4 +121,12 @@ public class Solucion {
     public void liberarImpresora() {
         colaImpresion.eliminar_min();
     }
+    
+    public void eliminarDocumentoDeCola(String nombreUsuario) {
+        RegistroImpresion registro = tablaUsuariosRegistros.obtener(nombreUsuario);
+        if (registro != null) {
+            colaImpresion.alterarPrioridadAlMaximo(registro);
+            colaImpresion.eliminar_min();
+        }
+    }
 }
