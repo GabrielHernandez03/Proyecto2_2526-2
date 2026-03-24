@@ -117,4 +117,8 @@ public class Solucion {
         colaImpresion.insertar(registro);
         tablaUsuariosRegistros.insertar(user.nombre, registro);
     }
+    
+    public void liberarImpresora() {
+        colaImpresion.eliminar_min();
+    }
 }
