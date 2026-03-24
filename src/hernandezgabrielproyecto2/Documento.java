@@ -12,10 +12,12 @@ public class Documento {
     String nombre;
     int tamano;
     String tipo;
+    boolean enCola;
 
     public Documento(String nombre, int tamano, String tipo) {
         this.nombre = nombre;
         this.tamano = tamano;
         this.tipo = tipo;
+        this.enCola = false;
     }
 }
