@@ -64,4 +64,25 @@ public class Solucion {
             user.documentos.agregar(new Documento(nombreDoc, tamano, tipoDoc));
         }
     }
+    
+    public void eliminarDocumentoNoEncolado(String nombreUsuario, String nombreDoc) {
+        Usuario user = usuariosRegistrados.buscar(nombreUsuario);
+        if (user != null) {
+            NodoLista actual = user.documentos.cabeza;
+            NodoLista previo = null;
+            while (actual != null) {
+                Documento doc = (Documento) actual.valor;
+                if (doc.nombre.equals(nombreDoc) && !doc.enCola) {
+                    if (previo == null) {
+                        user.documentos.cabeza = actual.siguiente;
+                    } else {
+                        previo.siguiente = actual.siguiente;
+                    }
+                    break;
+                }
+                previo = actual;
+                actual = actual.siguiente;
+            }
+        }
+    }
 }
