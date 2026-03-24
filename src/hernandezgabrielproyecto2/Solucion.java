@@ -24,4 +24,10 @@ public class Solucion {
     public void avanzarReloj() {
         this.relojSimulacion++;
     }
+    
+    public void agregarUsuario(String nombre, String tipo) {
+        if (usuariosRegistrados.buscar(nombre) == null) {
+            usuariosRegistrados.agregar(new Usuario(nombre, tipo));
+        }
+    }
 }
