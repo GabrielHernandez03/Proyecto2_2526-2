@@ -6,7 +6,7 @@ package hernandezgabrielproyecto2.interfaces;
 
 /**
  *
- * @author eduar
+ * @author Gabriel
  */
 public class Interfaz_Inicio extends javax.swing.JFrame {
     

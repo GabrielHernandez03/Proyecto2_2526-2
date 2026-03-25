@@ -6,16 +6,16 @@ package hernandezgabrielproyecto2.interfaces;
 
 /**
  *
- * @author Gabriel
+ * @author eduar
  */
-public class Interfaz_Documentos extends javax.swing.JFrame {
+public class Interfaz_Usuario extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interfaz_Documentos.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interfaz_Usuario.class.getName());
 
     /**
-     * Creates new form Interfaz_Documentos
+     * Creates new form Interfaz_Usuario
      */
-    public Interfaz_Documentos() {
+    public Interfaz_Usuario() {
         initComponents();
     }
 
@@ -66,7 +66,7 @@ public class Interfaz_Documentos extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Interfaz_Documentos().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Interfaz_Usuario().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

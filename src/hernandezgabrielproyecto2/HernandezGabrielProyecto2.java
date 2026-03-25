@@ -4,6 +4,9 @@
  */
 package hernandezgabrielproyecto2;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  *
  * @author Gabriel
@@ -16,5 +19,4 @@ public class HernandezGabrielProyecto2 {
     public static void main(String[] args) {
         // TODO code application logic here
     }
-    
 }
