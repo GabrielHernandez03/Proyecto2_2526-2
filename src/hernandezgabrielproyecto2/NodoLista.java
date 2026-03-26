@@ -5,13 +5,17 @@
 package hernandezgabrielproyecto2;
 
 /**
- *
+ * un nodo sensillo para la lista de documentos
  * @author Gabriel
  */
 public class NodoLista {
     Documento valor;
     NodoLista siguiente;
 
+    /**
+     * crea el nodo con el documento adentro
+     * @param valor el documento que se guarda aki
+     */
     public NodoLista(Documento valor) {
         this.valor = valor;
         this.siguiente = null;
