@@ -5,7 +5,7 @@
 package hernandezgabrielproyecto2;
 
 /**
- *
+ * esta clase es el corazon de la cola de prioridad, ordena todo segun el tiempo
  * @author Gabriel
  */
 public class MonticuloBinario {
@@ -14,12 +14,20 @@ public class MonticuloBinario {
     private int tamanoActual;
     private int capacidadMaxima;
 
+    /**
+     * constructor para empesar el monticulo con un tamaño fijo
+     * @param capacidadMaxima cuanto es lo maximo que aguanta el arreglo
+     */
     public MonticuloBinario(int capacidadMaxima) {
         this.capacidadMaxima = capacidadMaxima;
         this.tamanoActual = 0;
         this.monticulo = new RegistroImpresion[this.capacidadMaxima + 1];
     }
     
+    /**
+     * mete un registro nuevo y lo acomoda donde toca
+     * @param registro el objeto con el doc y su prioridad
+     */
     public void insertar(RegistroImpresion registro) {
         if (tamanoActual >= capacidadMaxima) {
             return;
@@ -42,6 +50,10 @@ public class MonticuloBinario {
         monticulo[j] = temp;
     }
     
+    /**
+     * saca el que tiene menor tiempo, osea el que va primero en la cola
+     * @return el registro que ya se va a imprimir
+     */
     public RegistroImpresion eliminar_min() {
         if (tamanoActual == 0) {
             return null;
@@ -67,20 +79,32 @@ public class MonticuloBinario {
         }
     }
     
+    /**
+     * truco para mandar un registro al principio de la cola poniendole tiempo minimo
+     * @param registro el registro que queremos saltar puestos
+     */
     public void alterarPrioridadAlMaximo(RegistroImpresion registro) {
         for (int i = 1; i <= tamanoActual; i++) {
             if (monticulo[i] == registro) {
-                monticulo[i].etiquetaTiempo = -1;
+                monticulo[i].etiquetaTiempo = Integer.MIN_VALUE; 
                 flotar(i);
                 break;
             }
         }
     }
     
+    /**
+     * sirve para agarrar el arreglo por si ocupamos graficar o algo
+     * @return el arreglo interno del monticulo
+     */
     public RegistroImpresion[] obtenerArregloInterno() {
         return monticulo;
     }
 
+    /**
+     * nos dise cuantos elementos hay en la cola ahorita
+     * @return el numero de registros guardados
+     */
     public int obtenerTamano() {
         return tamanoActual;
     }
