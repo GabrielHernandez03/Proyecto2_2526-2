@@ -4,6 +4,7 @@
  */
 package hernandezgabrielproyecto2;
 
+import hernandezgabrielproyecto2.interfaces.Interfaz_Inicio;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -18,5 +19,6 @@ public class HernandezGabrielProyecto2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Interfaz_Inicio i = new Interfaz_Inicio(new Solucion());
     }
 }
