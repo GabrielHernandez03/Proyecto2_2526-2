@@ -5,12 +5,16 @@
 package hernandezgabrielproyecto2;
 
 /**
- *
+ * lista enlazada simple para guardar barios documentos
  * @author Gabriel
  */
 public class ListaDocumentos {
     NodoLista cabeza;
 
+    /**
+     * añade un documento al final de la lista
+     * @param doc el objeto documento que se va a agregar
+     */
     public void agregar(Documento doc) {
         NodoLista nuevo = new NodoLista(doc);
         if (cabeza == null) {
@@ -23,6 +27,4 @@ public class ListaDocumentos {
             actual.siguiente = nuevo;
         }
     }
-
-    
 }
