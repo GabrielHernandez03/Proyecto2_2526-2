@@ -4,19 +4,45 @@
  */
 package hernandezgabrielproyecto2.interfaces;
 
+import hernandezgabrielproyecto2.Solucion;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Gabriel
  */
 public class Interfaz_Impresora extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interfaz_Impresora.class.getName());
+    static Solucion s;
 
     /**
-     * Creates new form Interfaz_Impresora
+     * Creates new form Interfaz_Documentos
      */
-    public Interfaz_Impresora() {
+    public Interfaz_Impresora(Solucion s) {
         initComponents();
+        this.s = s;
+        this.setVisible(true);
+        this.impresora.setText(s.obtenerColaImpresionTexto());
+
+        
+        String[] users = s.obtenerNombresUsuarios();
+        this.sel_usuario.removeAllItems();
+        for (String u : users) {
+            this.sel_usuario.addItem(u);
+        }
+        
+        String[] docs = s.obtenerNombresDocsEnCola();
+        this.sel_doc.removeAllItems();
+        for (String d : docs) {
+            this.sel_doc.addItem(d);
+        }
+        
+        String[] ds = s.obtenerNombresDocumentosUsuario((String) this.sel_usuario.getSelectedItem());
+        this.sel_doc1.removeAllItems();
+        for (String d : ds) {
+            this.sel_doc1.addItem(d);
+        }
     }
 
     /**
@@ -28,21 +54,201 @@ public class Interfaz_Impresora extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        sel_doc = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        impresora = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        sel_usuario = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        sel_doc1 = new javax.swing.JComboBox<>();
+        jButton6 = new javax.swing.JButton();
+        prioridad = new javax.swing.JCheckBox();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 153, 204));
+        jButton1.setText("Ver Arbol");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 410, 210, -1));
+
+        sel_doc.setFont(new java.awt.Font("Calibri", 2, 24)); // NOI18N
+        sel_doc.setForeground(new java.awt.Color(0, 153, 204));
+        jPanel1.add(sel_doc, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 260, -1));
+
+        impresora.setEditable(false);
+        impresora.setColumns(20);
+        impresora.setFont(new java.awt.Font("Calibri", 2, 18)); // NOI18N
+        impresora.setForeground(new java.awt.Color(0, 153, 204));
+        impresora.setRows(5);
+        jScrollPane1.setViewportView(impresora);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, 280, 270));
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Documentos en cola:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 90, -1, -1));
+
+        jButton2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 153, 204));
+        jButton2.setText("Eliminar Documento");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 260, -1));
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Menu Impresora");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        jButton3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(0, 153, 204));
+        jButton3.setText("Volver");
+        jButton3.addActionListener(this::jButton3ActionPerformed);
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Selecciona el Documento:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+
+        jButton5.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(0, 153, 204));
+        jButton5.setText("Imprimir");
+        jButton5.addActionListener(this::jButton5ActionPerformed);
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 260, -1));
+
+        sel_usuario.setFont(new java.awt.Font("Calibri", 2, 24)); // NOI18N
+        sel_usuario.setForeground(new java.awt.Color(0, 153, 204));
+        sel_usuario.addActionListener(this::sel_usuarioActionPerformed);
+        jPanel1.add(sel_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 260, -1));
+
+        jLabel9.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Selecciona el Usuario:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Selecciona el Documento:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
+
+        sel_doc1.setFont(new java.awt.Font("Calibri", 2, 24)); // NOI18N
+        sel_doc1.setForeground(new java.awt.Color(0, 153, 204));
+        sel_doc1.addActionListener(this::sel_doc1ActionPerformed);
+        jPanel1.add(sel_doc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 260, -1));
+
+        jButton6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(0, 153, 204));
+        jButton6.setText("Liberar Impresora");
+        jButton6.addActionListener(this::jButton6ActionPerformed);
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 210, -1));
+
+        prioridad.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        prioridad.setForeground(new java.awt.Color(255, 255, 255));
+        prioridad.setText("Es Prioritario");
+        jPanel1.add(prioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            s.graficarColaArbol();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "No hay documentos en el arbol");
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            String titulo = (String) this.sel_doc.getSelectedItem();
+            String u = (String) this.sel_usuario.getSelectedItem();
+
+            s.eliminarDocumentoDeCola(u, titulo);
+
+            JOptionPane.showMessageDialog(rootPane, "Documento eliminado de la cola");
+        this.impresora.setText(s.obtenerColaImpresionTexto());
+
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Interfaz_Inicio i = new Interfaz_Inicio(s);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            String u = (String) this.sel_usuario.getSelectedItem();
+            String titulo = (String) this.sel_doc1.getSelectedItem();
+
+            s.enviarAImprimir(u, titulo, this.prioridad.isSelected());
+
+            JOptionPane.showMessageDialog(rootPane, "Documento enviado a la cola de impresion");
+        this.impresora.setText(s.obtenerColaImpresionTexto());
+       String[] docs = s.obtenerNombresDocsEnCola();
+        this.sel_doc.removeAllItems();
+        for (String d : docs) {
+            this.sel_doc.addItem(d);
+        }
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        try {
+            s.liberarImpresora();
+
+            JOptionPane.showMessageDialog(rootPane, "Documento eliminado de la cola");
+        this.impresora.setText(s.obtenerColaImpresionTexto());
+       String[] docs = s.obtenerNombresDocsEnCola();
+        this.sel_doc.removeAllItems();
+        for (String d : docs) {
+            this.sel_doc.addItem(d);
+        }
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void sel_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sel_usuarioActionPerformed
+        // TODO add your handling code here:
+        
+        String[] docs = s.obtenerNombresDocumentosUsuario((String) this.sel_usuario.getSelectedItem());
+            this.sel_doc1.removeAllItems();
+            for (String d : docs) {
+                this.sel_doc1.addItem(d);
+            }
+    }//GEN-LAST:event_sel_usuarioActionPerformed
+
+    private void sel_doc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sel_doc1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sel_doc1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -66,9 +272,26 @@ public class Interfaz_Impresora extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Interfaz_Impresora().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Interfaz_Impresora(s).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea impresora;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JCheckBox prioridad;
+    private javax.swing.JComboBox<String> sel_doc;
+    private javax.swing.JComboBox<String> sel_doc1;
+    private javax.swing.JComboBox<String> sel_usuario;
     // End of variables declaration//GEN-END:variables
 }
