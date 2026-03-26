@@ -4,6 +4,12 @@
  */
 package hernandezgabrielproyecto2.interfaces;
 
+import hernandezgabrielproyecto2.Solucion;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Gabriel
@@ -11,13 +17,43 @@ package hernandezgabrielproyecto2.interfaces;
 public class Interfaz_Inicio extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interfaz_Inicio.class.getName());
-
+static Solucion s;
     /**
-     * Creates new form Interfaz_Inicio
+     * Creates new form Interfaz_Documentos
      */
-    public Interfaz_Inicio() {
+    public Interfaz_Inicio(Solucion s) {
         initComponents();
+        this.s = s;
+        this.setVisible(true);
+                this.impresora.setText(s.obtenerColaImpresionTexto());
+                this.impresora1.setText(s.obtenerReporteUsuariosYDocs());
+
     }
+    
+    public String seleccionarYCargarUsuarios() {
+    JFileChooser selector = new JFileChooser();
+    selector.setDialogTitle("Seleccione el archivo CSV de usuarios");
+    
+    FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos CSV", "csv");
+    selector.setFileFilter(filtro);
+    
+    int resultado = selector.showOpenDialog(null);
+    
+    if (resultado == JFileChooser.APPROVE_OPTION) {
+        File archivoSeleccionado = selector.getSelectedFile();
+        String ruta = archivoSeleccionado.getAbsolutePath();
+        
+        try {
+
+            s.cargarUsuariosCSV(ruta);
+            return "Carga exitosa: " + archivoSeleccionado.getName();
+        } catch (Exception e) {
+            return "Error al procesar el archivo: " + e.getMessage();
+        }
+    }
+    
+    return "Operación cancelada por el usuario.";
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,21 +64,130 @@ public class Interfaz_Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        impresora = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        impresora1 = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 153, 204));
+        jButton1.setText("Ver Arbol");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 210, -1));
+
+        impresora.setEditable(false);
+        impresora.setColumns(20);
+        impresora.setFont(new java.awt.Font("Calibri", 2, 18)); // NOI18N
+        impresora.setForeground(new java.awt.Color(0, 153, 204));
+        impresora.setRows(5);
+        jScrollPane1.setViewportView(impresora);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 280, 250));
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Usuarios:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, -1, -1));
+
+        jButton2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 153, 204));
+        jButton2.setText("Menu Documentos");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 240, -1));
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Menu Inicial");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        jButton6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(0, 153, 204));
+        jButton6.setText("Cargar CSV");
+        jButton6.addActionListener(this::jButton6ActionPerformed);
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 240, -1));
+
+        jButton7.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(0, 153, 204));
+        jButton7.setText("Menu Impresora");
+        jButton7.addActionListener(this::jButton7ActionPerformed);
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 240, -1));
+
+        jButton8.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(0, 153, 204));
+        jButton8.setText("Menu Usuarios");
+        jButton8.addActionListener(this::jButton8ActionPerformed);
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 240, -1));
+
+        impresora1.setEditable(false);
+        impresora1.setColumns(20);
+        impresora1.setFont(new java.awt.Font("Calibri", 2, 18)); // NOI18N
+        impresora1.setForeground(new java.awt.Color(0, 153, 204));
+        impresora1.setRows(5);
+        jScrollPane2.setViewportView(impresora1);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 270, 310));
+
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Documentos en cola:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+                try {
+            s.graficarColaArbol();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "No hay documentos en el arbol");
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Interfaz_Documentos i = new Interfaz_Documentos(s);
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        this.seleccionarYCargarUsuarios();
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        Interfaz_Impresora i = new Interfaz_Impresora(s);
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        Interfaz_Usuario i = new Interfaz_Usuario(s);
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -66,9 +211,22 @@ public class Interfaz_Inicio extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Interfaz_Inicio().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Interfaz_Inicio(s).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea impresora;
+    private javax.swing.JTextArea impresora1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
