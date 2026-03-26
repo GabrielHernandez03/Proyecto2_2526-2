@@ -144,12 +144,12 @@ public class Interfaz_Usuario extends javax.swing.JFrame {
             String u = (String) this.sel_usuario.getSelectedItem();
             s.eliminarUsuario(u);
             JOptionPane.showMessageDialog(rootPane, "Usuario eliminado");
-        this.grafo.setText(s.obtenerReporteUsuariosYDocs());
-String[] users = s.obtenerNombresUsuarios();
-        this.sel_usuario.removeAllItems();
-        for (String T : users) {
-            this.sel_usuario.addItem(T);
-        }
+            this.grafo.setText(s.obtenerReporteUsuariosYDocs());
+            String[] users = s.obtenerNombresUsuarios();
+            this.sel_usuario.removeAllItems();
+            for (String T : users) {
+                this.sel_usuario.addItem(T);
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Error");
 
@@ -160,24 +160,24 @@ String[] users = s.obtenerNombresUsuarios();
         // TODO add your handling code here:
         try {
             String u = (String) this.prioridad.getSelectedItem();
-            if(u.equals("Alta")){
+            if (u.equals("Alta")) {
                 u = "prioridad_alta";
-            }else if(u.equals("Media")){
+            } else if (u.equals("Media")) {
                 u = "prioridad_media";
-            }else if(u.equals("Baja")){
+            } else if (u.equals("Baja")) {
                 u = "prioridad_baja";
             }
             String titulo = this.nombew.getText();
 
             s.agregarUsuario(titulo, u);
-        this.grafo.setText(s.obtenerReporteUsuariosYDocs());
+            this.grafo.setText(s.obtenerReporteUsuariosYDocs());
 
             JOptionPane.showMessageDialog(rootPane, "Usuario Agregado");
-String[] users = s.obtenerNombresUsuarios();
-        this.sel_usuario.removeAllItems();
-        for (String T : users) {
-            this.sel_usuario.addItem(T);
-        }
+            String[] users = s.obtenerNombresUsuarios();
+            this.sel_usuario.removeAllItems();
+            for (String T : users) {
+                this.sel_usuario.addItem(T);
+            }
         } catch (Exception e) {
 
         }

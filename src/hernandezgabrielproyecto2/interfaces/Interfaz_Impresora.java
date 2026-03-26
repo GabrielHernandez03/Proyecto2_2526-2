@@ -25,19 +25,18 @@ public class Interfaz_Impresora extends javax.swing.JFrame {
         this.setVisible(true);
         this.impresora.setText(s.obtenerColaImpresionTexto());
 
-        
         String[] users = s.obtenerNombresUsuarios();
         this.sel_usuario.removeAllItems();
         for (String u : users) {
             this.sel_usuario.addItem(u);
         }
-        
+
         String[] docs = s.obtenerNombresDocsEnCola();
         this.sel_doc.removeAllItems();
         for (String d : docs) {
             this.sel_doc.addItem(d);
         }
-        
+
         String[] ds = s.obtenerNombresDocumentosUsuario((String) this.sel_usuario.getSelectedItem());
         this.sel_doc1.removeAllItems();
         for (String d : ds) {
@@ -185,7 +184,7 @@ public class Interfaz_Impresora extends javax.swing.JFrame {
             s.eliminarDocumentoDeCola(u, titulo);
 
             JOptionPane.showMessageDialog(rootPane, "Documento eliminado de la cola");
-        this.impresora.setText(s.obtenerColaImpresionTexto());
+            this.impresora.setText(s.obtenerColaImpresionTexto());
 
         } catch (Exception e) {
 
@@ -208,12 +207,12 @@ public class Interfaz_Impresora extends javax.swing.JFrame {
             s.enviarAImprimir(u, titulo, this.prioridad.isSelected());
 
             JOptionPane.showMessageDialog(rootPane, "Documento enviado a la cola de impresion");
-        this.impresora.setText(s.obtenerColaImpresionTexto());
-       String[] docs = s.obtenerNombresDocsEnCola();
-        this.sel_doc.removeAllItems();
-        for (String d : docs) {
-            this.sel_doc.addItem(d);
-        }
+            this.impresora.setText(s.obtenerColaImpresionTexto());
+            String[] docs = s.obtenerNombresDocsEnCola();
+            this.sel_doc.removeAllItems();
+            for (String d : docs) {
+                this.sel_doc.addItem(d);
+            }
         } catch (Exception e) {
 
         }
@@ -224,13 +223,13 @@ public class Interfaz_Impresora extends javax.swing.JFrame {
         try {
             s.liberarImpresora();
 
-            JOptionPane.showMessageDialog(rootPane, "Documento eliminado de la cola");
-        this.impresora.setText(s.obtenerColaImpresionTexto());
-       String[] docs = s.obtenerNombresDocsEnCola();
-        this.sel_doc.removeAllItems();
-        for (String d : docs) {
-            this.sel_doc.addItem(d);
-        }
+            JOptionPane.showMessageDialog(rootPane, "Documento Impreso");
+            this.impresora.setText(s.obtenerColaImpresionTexto());
+            String[] docs = s.obtenerNombresDocsEnCola();
+            this.sel_doc.removeAllItems();
+            for (String d : docs) {
+                this.sel_doc.addItem(d);
+            }
         } catch (Exception e) {
 
         }
@@ -238,12 +237,12 @@ public class Interfaz_Impresora extends javax.swing.JFrame {
 
     private void sel_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sel_usuarioActionPerformed
         // TODO add your handling code here:
-        
+
         String[] docs = s.obtenerNombresDocumentosUsuario((String) this.sel_usuario.getSelectedItem());
-            this.sel_doc1.removeAllItems();
-            for (String d : docs) {
-                this.sel_doc1.addItem(d);
-            }
+        this.sel_doc1.removeAllItems();
+        for (String d : docs) {
+            this.sel_doc1.addItem(d);
+        }
     }//GEN-LAST:event_sel_usuarioActionPerformed
 
     private void sel_doc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sel_doc1ActionPerformed

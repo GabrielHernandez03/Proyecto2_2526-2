@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author Gabriel
  */
 public class Interfaz_Documentos extends javax.swing.JFrame {
-
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interfaz_Documentos.class.getName());
     static Solucion s;
 
@@ -22,7 +22,7 @@ public class Interfaz_Documentos extends javax.swing.JFrame {
     public Interfaz_Documentos(Solucion s) {
         initComponents();
         this.s = s;
-
+        
         this.setVisible(true);
         this.impresora.setText(s.obtenerColaImpresionTexto());
         String[] users = s.obtenerNombresUsuarios();
@@ -201,10 +201,10 @@ public class Interfaz_Documentos extends javax.swing.JFrame {
             for (String d : docs) {
                 this.sel_doc.addItem(d);
             }
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Introduzca un numero para el peso");
-
+            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -219,9 +219,9 @@ public class Interfaz_Documentos extends javax.swing.JFrame {
         try {
             String u = (String) this.sel_usuario.getSelectedItem();
             String titulo = (String) this.sel_doc.getSelectedItem();
-
+            
             s.eliminarDocumentoNoEncolado(u, titulo);
-
+            
             JOptionPane.showMessageDialog(rootPane, "Documento eliminado");
             this.doc_us.setText(s.obtenerDetallesTodosDocumentosUsuario((String) this.sel_usuario.getSelectedItem()));
             String[] docs = s.obtenerNombresDocumentosUsuario((String) this.sel_usuario.getSelectedItem());
@@ -230,7 +230,7 @@ public class Interfaz_Documentos extends javax.swing.JFrame {
                 this.sel_doc.addItem(d);
             }
         } catch (Exception e) {
-
+            
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -251,7 +251,7 @@ public class Interfaz_Documentos extends javax.swing.JFrame {
             s.graficarColaArbol();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "No hay documentos en el arbol");
-
+            
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

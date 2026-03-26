@@ -15,9 +15,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Gabriel
  */
 public class Interfaz_Inicio extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interfaz_Inicio.class.getName());
-static Solucion s;
+    static Solucion s;
+
     /**
      * Creates new form Interfaz_Documentos
      */
@@ -25,35 +26,35 @@ static Solucion s;
         initComponents();
         this.s = s;
         this.setVisible(true);
-                this.impresora.setText(s.obtenerColaImpresionTexto());
-                this.impresora1.setText(s.obtenerReporteUsuariosYDocs());
+        this.impresora.setText(s.obtenerColaImpresionTexto());
+        this.impresora1.setText(s.obtenerReporteUsuariosYDocs());
 
     }
-    
+
     public String seleccionarYCargarUsuarios() {
-    JFileChooser selector = new JFileChooser();
-    selector.setDialogTitle("Seleccione el archivo CSV de usuarios");
-    
-    FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos CSV", "csv");
-    selector.setFileFilter(filtro);
-    
-    int resultado = selector.showOpenDialog(null);
-    
-    if (resultado == JFileChooser.APPROVE_OPTION) {
-        File archivoSeleccionado = selector.getSelectedFile();
-        String ruta = archivoSeleccionado.getAbsolutePath();
-        
-        try {
+        JFileChooser selector = new JFileChooser();
+        selector.setDialogTitle("Seleccione el archivo CSV de usuarios");
 
-            s.cargarUsuariosCSV(ruta);
-            return "Carga exitosa: " + archivoSeleccionado.getName();
-        } catch (Exception e) {
-            return "Error al procesar el archivo: " + e.getMessage();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos CSV", "csv");
+        selector.setFileFilter(filtro);
+
+        int resultado = selector.showOpenDialog(null);
+
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            File archivoSeleccionado = selector.getSelectedFile();
+            String ruta = archivoSeleccionado.getAbsolutePath();
+
+            try {
+
+                s.cargarUsuariosCSV(ruta);
+                return "Carga exitosa: " + archivoSeleccionado.getName();
+            } catch (Exception e) {
+                return "Error al procesar el archivo: " + e.getMessage();
+            }
         }
+
+        return "Operación cancelada por el usuario.";
     }
-    
-    return "Operación cancelada por el usuario.";
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -154,7 +155,7 @@ static Solucion s;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                try {
+        try {
             s.graficarColaArbol();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "No hay documentos en el arbol");
@@ -172,7 +173,7 @@ static Solucion s;
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         this.seleccionarYCargarUsuarios();
-        
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
