@@ -5,13 +5,17 @@
 package hernandezgabrielproyecto2;
 
 /**
- *
+ * nodo para la lista de usuarios del sistema
  * @author Gabriel
  */
 public class NodoUsuario {
     Usuario valor;
     NodoUsuario siguiente;
 
+    /**
+     * constructor para crear el nodo del usuario
+     * @param valor los datos del usuario
+     */
     public NodoUsuario(Usuario valor) {
         this.valor = valor;
         this.siguiente = null;
